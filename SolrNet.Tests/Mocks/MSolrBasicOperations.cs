@@ -75,5 +75,9 @@ namespace SolrNet.Tests.Mocks {
             return delete.Invoke(ids, q, parameters);
         }
 
-    }
+		public System.Xml.Linq.XDocument QueryXDocument(ISolrQuery query, QueryOptions options)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

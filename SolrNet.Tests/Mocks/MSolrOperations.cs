@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using Moroco;
 using SolrNet.Commands.Parameters;
 using SolrNet.Impl;
@@ -11,6 +12,11 @@ namespace SolrNet.Tests.Mocks {
         public SolrQueryResults<T> Query(ISolrQuery query, QueryOptions options) {
             throw new NotImplementedException();
         }
+
+		public XDocument QueryXDocument(ISolrQuery query, QueryOptions options)
+		{
+			throw new NotImplementedException();
+		}
 
         public SolrMoreLikeThisHandlerResults<T> MoreLikeThis(SolrMLTQuery query, MoreLikeThisHandlerQueryOptions options) {
             throw new NotImplementedException();
@@ -49,6 +55,33 @@ namespace SolrNet.Tests.Mocks {
         public SolrQueryResults<T> Query(ISolrQuery query, ICollection<SortOrder> orders) {
             throw new NotImplementedException();
         }
+
+		public XDocument QueryXDocument(string q)
+		{
+			throw new NotImplementedException();
+		}
+
+		public XDocument QueryXDocument(string q, ICollection<SortOrder> orders)
+		{
+			throw new NotImplementedException();
+		}
+
+		public MFunc<string, QueryOptions, XDocument> queryStringOptionsXDocument;
+
+		public XDocument QueryXDocument(string q, QueryOptions options)
+		{
+			return queryStringOptionsXDocument.Invoke(q, options);
+		}
+
+		public XDocument QueryXDocument(ISolrQuery q)
+		{
+			throw new NotImplementedException();
+		}
+
+		public XDocument QueryXDocument(ISolrQuery query, ICollection<SortOrder> orders)
+		{
+			throw new NotImplementedException();
+		}
 
         public ICollection<KeyValuePair<string, int>> FacetFieldQuery(SolrFacetFieldQuery facets) {
             throw new NotImplementedException();

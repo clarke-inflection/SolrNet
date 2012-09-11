@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
 using SolrNet.Commands.Parameters;
 using SolrNet.Exceptions;
@@ -588,6 +589,18 @@ namespace SolrNet.Impl {
             resultParser.Parse(xml, results);
             return results;
         }
+
+		/// <summary>
+		/// Executes the query and returns results as an XDocument
+		/// </summary>
+		/// <returns>query results</returns>
+		public XDocument ExecuteXDocument(ISolrQuery q, QueryOptions options)
+		{
+			var param = GetAllParameters(q, options);
+			var r = connection.Get(Handler, param);
+			var results = XDocument.Parse(r);
+			return results;
+		}
 
         /// <summary>
         /// Executes a MoreLikeThis handler query

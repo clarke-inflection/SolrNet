@@ -98,6 +98,11 @@ namespace SolrNet.Impl {
             return queryExecuter.Execute(query, options);
         }
 
+		public XDocument QueryXDocument(ISolrQuery query, QueryOptions options)
+		{
+			return queryExecuter.ExecuteXDocument(query, options);
+		}
+
         public string Send(ISolrCommand cmd) {
             return cmd.Execute(connection);
         }

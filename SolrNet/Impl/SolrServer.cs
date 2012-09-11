@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml.Linq;
 using SolrNet.Commands.Parameters;
 using SolrNet.Exceptions;
 using SolrNet.Mapping.Validation;
@@ -97,6 +98,71 @@ namespace SolrNet.Impl {
         public SolrQueryResults<T> Query(ISolrQuery query, ICollection<SortOrder> orders) {
             return Query(query, new QueryOptions { OrderBy = orders });
         }
+
+
+
+		/// <summary>
+		/// Executes a query
+		/// </summary>
+		/// <param name="query"></param>
+		/// <param name="options"></param>
+		/// <returns></returns>
+		public XDocument QueryXDocument(ISolrQuery query, QueryOptions options)
+		{
+			return basicServer.QueryXDocument(query, options);
+		}
+
+
+		public XDocument QueryXDocument(string q)
+		{
+			return QueryXDocument(new SolrQuery(q));
+		}
+
+		/// <summary>
+		/// Executes a query
+		/// </summary>
+		/// <param name="q"></param>
+		/// <param name="orders"></param>
+		/// <returns></returns>
+		public XDocument QueryXDocument(string q, ICollection<SortOrder> orders)
+		{
+			return QueryXDocument(new SolrQuery(q), orders);
+		}
+
+		/// <summary>
+		/// Executes a query
+		/// </summary>
+		/// <param name="q"></param>
+		/// <param name="options"></param>
+		/// <returns></returns>
+		public XDocument QueryXDocument(string q, QueryOptions options)
+		{
+			return basicServer.QueryXDocument(new SolrQuery(q), options);
+		}
+
+		/// <summary>
+		/// Executes a query
+		/// </summary>
+		/// <param name="q"></param>
+		/// <returns></returns>
+		public XDocument QueryXDocument(ISolrQuery q)
+		{
+			return QueryXDocument(q, new QueryOptions());
+		}
+
+		/// <summary>
+		/// Executes a query
+		/// </summary>
+		/// <param name="query"></param>
+		/// <param name="orders"></param>
+		/// <returns></returns>
+		public XDocument QueryXDocument(ISolrQuery query, ICollection<SortOrder> orders)
+		{
+			return QueryXDocument(query, new QueryOptions { OrderBy = orders });
+		}
+
+
+
 
         /// <summary>
         /// Executes a facet field query only

@@ -52,7 +52,15 @@ namespace SolrNet.Utils {
                 yield return c(this);
         }
 
-        /// <summary>
+		/// <summary>
+		/// Checks if the specified key is registered
+		/// </summary>
+		/// <param name="key">Component key</param>
+		public bool IsRegistered(string key) {
+			return componentsByName.ContainsKey(key);
+		}
+
+    	/// <summary>
         /// Adds a component implementing <typeparamref name="T"/>
         /// Component key is <typeparamref name="T"/>'s <see cref="Type.FullName"/>
         /// </summary>

@@ -15,6 +15,7 @@
 #endregion
 
 using System.Collections.Generic;
+using System.Xml.Linq;
 using SolrNet.Commands.Parameters;
 using SolrNet.Impl;
 
@@ -61,6 +62,48 @@ namespace SolrNet {
         /// <param name="orders"></param>
         /// <returns></returns>
         SolrQueryResults<T> Query(ISolrQuery query, ICollection<SortOrder> orders);
+
+
+
+		/// <summary>
+		/// Executes a query
+		/// </summary>
+		/// <param name="q">query to execute</param>
+		/// <returns>query results</returns>
+		XDocument QueryXDocument(string q);
+
+		/// <summary>
+		/// Executes a query
+		/// </summary>
+		/// <param name="q"></param>
+		/// <param name="orders"></param>
+		/// <returns></returns>
+		XDocument QueryXDocument(string q, ICollection<SortOrder> orders);
+
+		/// <summary>
+		/// Executes a query
+		/// </summary>
+		/// <param name="q"></param>
+		/// <param name="options"></param>
+		/// <returns></returns>
+		XDocument QueryXDocument(string q, QueryOptions options);
+
+		/// <summary>
+		/// Executes a query
+		/// </summary>
+		/// <param name="q"></param>
+		/// <returns></returns>
+		XDocument QueryXDocument(ISolrQuery q);
+
+		/// <summary>
+		/// Executes a query
+		/// </summary>
+		/// <param name="query"></param>
+		/// <param name="orders"></param>
+		/// <returns></returns>
+		XDocument QueryXDocument(ISolrQuery query, ICollection<SortOrder> orders);
+
+
 
         /// <summary>
         /// Executes a single facet field query

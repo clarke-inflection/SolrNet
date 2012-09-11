@@ -15,6 +15,7 @@
 #endregion
 
 using System.Collections.Generic;
+using System.Xml.Linq;
 using SolrNet.Commands.Parameters;
 using SolrNet.Impl;
 
@@ -29,6 +30,12 @@ namespace SolrNet {
 		/// </summary>
 		/// <returns>query results</returns>
 		SolrQueryResults<T> Execute(ISolrQuery q, QueryOptions options);
+
+		/// <summary>
+		/// Executes the query and returns results as an XDocument
+		/// </summary>
+		/// <returns>query results</returns>
+		XDocument ExecuteXDocument(ISolrQuery q, QueryOptions options);
 
         SolrMoreLikeThisHandlerResults<T> Execute(SolrMLTQuery query, MoreLikeThisHandlerQueryOptions options);
 	}

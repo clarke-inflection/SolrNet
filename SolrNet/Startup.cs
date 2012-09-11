@@ -42,6 +42,12 @@ namespace SolrNet {
             InitContainer();
         }
 
+		public static bool IsRegistered<T>(string serverURL) {
+			var connection = new SolrConnection(serverURL);
+			var connectionKey = string.Format("{0}.{1}.{2}", typeof(SolrConnection), typeof(T), connection.GetType());
+			return Container.IsRegistered(connectionKey);
+		}
+
         public static void InitContainer() {
             ServiceLocator.SetLocatorProvider(() => Container);
             Container.Clear();
@@ -90,11 +96,14 @@ namespace SolrNet {
         /// <typeparam name="T">Document type</typeparam>
         /// <param name="serverURL">Solr URL (i.e. "http://localhost:8983/solr")</param>
         public static void Init<T>(string serverURL) {
-            var connection = new SolrConnection(serverURL) {
-                //Cache = Container.GetInstance<ISolrCache>(),
-            };
-
-            Init<T>(connection);
+			var connection = new SolrConnection(serverURL)
+			{
+				//Cache = Container.GetInstance<ISolrCache>(),
+			};
+			var connectionKey = string.Format("{0}.{1}.{2}", typeof(SolrConnection), typeof(T), connection.GetType());
+			if (!Container.IsRegistered(connectionKey)) {
+				Init<T>(connection);
+			}
         }
 
         /// <summary>
